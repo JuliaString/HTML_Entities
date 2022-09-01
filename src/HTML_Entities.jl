@@ -8,7 +8,7 @@ __precompile__()
 * completions(str)
 """
 module HTML_Entities
-using StrTables
+using StrTables, RelocatableFolders
 
 VER = UInt32(1)
 
@@ -30,7 +30,7 @@ end
 
 function __init__()
     global default =
-        HTML_Table(StrTables.load(joinpath(@__DIR__, "../data", "html.dat"))...)
+        HTML_Table(StrTables.load(@path(joinpath(@__DIR__, "../data", "html.dat")))...)
     nothing
 end
 end # module HTML_Entities
