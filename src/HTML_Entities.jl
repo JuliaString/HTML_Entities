@@ -9,6 +9,7 @@ __precompile__()
 """
 module HTML_Entities
 using StrTables
+using RelocatableFolders
 
 VER = UInt32(1)
 
@@ -29,8 +30,8 @@ struct HTML_Table{T} <: AbstractEntityTable
 end
 
 function __init__()
-    global default =
-        HTML_Table(StrTables.load(joinpath(@__DIR__, "../data", "html.dat"))...)
+    html_data_path = @path joinpath(@__DIR__, "../data", "html.dat")
+    global default = HTML_Table(StrTables.load(html_data_path)...)
     nothing
 end
 end # module HTML_Entities
