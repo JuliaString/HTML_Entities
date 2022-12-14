@@ -11,7 +11,7 @@ RelocatableFolders = "05181044-ff0b-4ac5-8273-598c1e38db00"
 StrTables = "9700d1a9-a7c8-5760-9816-a99fda30bb8f"
 
 [compat]
-RelocatableFolders = "0.3"
+RelocatableFolders = "1"
 StrTables = "1"
 julia = "1"
 
