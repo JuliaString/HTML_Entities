@@ -4,6 +4,8 @@
 
 println("Running HTML entity build in ", pwd())
 
+using Artifacts
+using Base.Filesystem
 using StrTables
 
 VER = UInt32(1)
@@ -98,4 +100,14 @@ else
         println("Error creating HTML tables")
         println(sprint(showerror, ex, catch_backtrace()))
     end
+end
+
+if isfile(savfile)
+    artifact_toml = joinpath(@__DIR__, "..", "Artifacts.toml")
+    hash = artifact_hash("htmlnames", artifact_toml)
+    path = artifact_path(hash)
+    isdir(path) || mkpath(path)
+    cp(savfile, joinpath(path, basename(savfile)), force=true)
+
+    println("Artifact had created at ", path)
 end
