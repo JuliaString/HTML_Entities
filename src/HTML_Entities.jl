@@ -9,6 +9,7 @@ __precompile__()
 """
 module HTML_Entities
 using StrTables, RelocatableFolders
+using Artifacts
 
 VER = UInt32(1)
 
@@ -28,7 +29,7 @@ struct HTML_Table{T} <: AbstractEntityTable
     ind2c::Vector{UInt16}
 end
 
-const DATA_PATH = @path joinpath(@__DIR__, "../data", "html.dat")
+const DATA_PATH = @path joinpath(artifact"htmlnames", "html.dat")
 
 function __init__()
     global default = HTML_Table(StrTables.load(DATA_PATH)...)
